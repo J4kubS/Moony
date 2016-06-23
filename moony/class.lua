@@ -1,3 +1,6 @@
+--- Simple framework for creating classes.
+-- @module moony.class
+
 local M, MT = {}, {}
 
 local getmetatable = _G.getmetatable
@@ -7,34 +10,32 @@ local rawget = _G.rawget
 local pairs = _G.pairs
 local type = _G.type
 
-local function inherit(child, parent)
-	assert(type(parent) == 'table', 'Parent class must be a table')
-	assert(type(child) == 'table', 'Child class must be a table')
-
-	for key, val in pairs(parent) do
-		if not child[key] then
-			child[key] = val
-		end
-	end
-end
-
+--- Checks whether `some_object` is instance of `some_class`.
+-- This function is dual to `class_of`.
+-- @function some_object:instance_of
+-- @param some_class class to check against
+-- @return `true` if `some_object` is instance of `some_class`; `false` otherwise
 local function instance_of(self, class)
-	assert(type(self) == 'table', 'Object must be a table')
-	assert(type(class) == 'table', 'Class must be a table')
+	if type(self) == 'table' and type(class) == 'table' then
+		local cls = getmetatable(self)
 
-	local cls = getmetatable(self)
+		while cls do
+			if cls == class then
+				return true
+			end
 
-	while cls do
-		if cls == class then
-			return true
+			cls = rawget(cls, '_super')
 		end
-
-		cls = rawget(cls, '_super')
 	end
 
 	return false
 end
 
+--- Checks whether `some_class` is class of `some_object`.
+-- This function is dual to `instance_of`.
+-- @function some_class:class_of
+-- @param some_object object to check against
+-- @return `true` if `some_class` is class of `some_object`; `false` otherwise
 local function class_of(self, object)
 	if type(self) == 'table' and rawget(self, 'instance_of') then
 		return self.instance_of(object, self)
@@ -43,6 +44,31 @@ local function class_of(self, object)
 	return false
 end
 
+--- Initializes an instance of `some_class`.
+-- This function is called when new instance of a class is created.
+-- @function some_class:init
+-- @param[opt] ... initialization parameters
+-- @usage local Foo = class()
+-- function Foo:init(bar)
+--   -- Bar.init(self, bar) -- call parent initializator if needed
+--   self.bar = bar
+-- end
+--
+-- local foo = Foo:new('baz')
+-- print(foo.bar) -- prints 'baz'
+
+--- Creates new instance of `some_class`.
+-- If defined, `init` function will be called to initialize the newly created instance.
+-- @function some_class:new
+-- @param[opt] ... parameters passed to the `init` function.
+-- @return new instance of `some_class`
+-- @usage local Foo = class()
+-- function Foo:bar()
+--   print('baz')
+-- end
+--
+-- local foo = foo:new()
+-- foo:bar() -- prints 'baz'
 local function new_object(class, ...)
 	assert(type(class) == 'table', 'Class must be a table')
 
@@ -56,10 +82,23 @@ local function new_object(class, ...)
 	return object
 end
 
+local function inherit(child, parent)
+	for key, val in pairs(parent) do
+		if not child[key] then
+			child[key] = val
+		end
+	end
+end
+
+--- Creates new class, derived from a given parent class.
+-- Any table can be used as a parent class.
+-- @function class
+-- @param[opt] super parent class
+-- @return new class
 local function new_class(super)
 	local class = {}
 
-	if super then
+	if type(super) == 'table' then
 		inherit(class, super)
 		class._super = super
 	end
