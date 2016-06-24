@@ -1,0 +1,528 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Moony Reference</title>
+    <link rel="stylesheet" href="../ldoc_pale.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>Moony</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Factories">Factories </a></li>
+<li><a href="#Filters">Filters </a></li>
+<li><a href="#Transformations">Transformations </a></li>
+<li><a href="#Predicates">Predicates </a></li>
+<li><a href="#Evaluation">Evaluation </a></li>
+<li><a href="#Key_Value_Pair">Key/Value Pair </a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="$(kind=='Topics' and '' or 'nowrap'">
+  <li><a href="../modules/moony.class.html">moony.class</a></li>
+  <li><strong>moony.query</strong></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>moony.query</code></h1>
+<p>Query library inspired by LINQ.</p>
+<p>
+</p>
+
+
+<h2><a href="#Factories">Factories </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#from">from (source)</a></td>
+	<td class="summary">Creates <code>Iterable</code> from given source.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#from_list">from_list (list)</a></td>
+	<td class="summary">Creates <code>Iterable</code> from given list.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#from_dictionary">from_dictionary (dictionary)</a></td>
+	<td class="summary">Creates <code>Iterable</code> from given dictionary.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#from_iterator">from_iterator (iterator)</a></td>
+	<td class="summary">Creates <code>Iterable</code> from given iterator.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#from_nil">from_nil ()</a></td>
+	<td class="summary">Creates empty <code>Iterable</code>.</td>
+	</tr>
+</table>
+<h2><a href="#Filters">Filters </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Iterable:where">Iterable:where (predicate)</a></td>
+	<td class="summary">Filters <code>Iterable</code> based on a predicate.</td>
+	</tr>
+</table>
+<h2><a href="#Transformations">Transformations </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Iterable:select">Iterable:select (selector)</a></td>
+	<td class="summary">Transforms each item of <code>Iterable</code>.</td>
+	</tr>
+</table>
+<h2><a href="#Predicates">Predicates </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Iterable:all">Iterable:all (predicate)</a></td>
+	<td class="summary">Checks whether all items of <code>Iterable</code> satisfy a predicate.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Iterable:any">Iterable:any (predicate)</a></td>
+	<td class="summary">Checks whether any item of <code>Iterable</code> satisfies a predicate.</td>
+	</tr>
+</table>
+<h2><a href="#Evaluation">Evaluation </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Iterable:to_list">Iterable:to_list ()</a></td>
+	<td class="summary">Creates a list from <code>Iterable</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Iterable:to_dictionary">Iterable:to_dictionary ()</a></td>
+	<td class="summary">Creates a dictionary from <code>Iterable</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Iterable:to_iterator">Iterable:to_iterator ()</a></td>
+	<td class="summary">Get the iterator of <code>Iterable</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Iterable:first_or_nil">Iterable:first_or_nil ()</a></td>
+	<td class="summary">Get the first item of <code>Iterable</code> or <code>nil</code> if no item is found.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Iterable:first">Iterable:first ()</a></td>
+	<td class="summary">Get the first item of <code>Iterable</code>.</td>
+	</tr>
+</table>
+<h2><a href="#Key_Value_Pair">Key/Value Pair </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#KeyValuePair">KeyValuePair</a></td>
+	<td class="summary">Table holding a key/value pair.</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Factories"></a>Factories </h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "from"></a>
+    <strong>from (source)</strong>
+    </dt>
+    <dd>
+    Creates <code>Iterable</code> from given source.
+ Type of the <code>source</code> is detected and appropriate factory function is used.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">source</span>
+         data source
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        instance of <code>Iterable</code>
+    </ol>
+
+
+    <h3>See also:</h3>
+    <ul>
+         <li><a href="../modules/moony.query.html#from_dictionary">from_dictionary</a></li>
+         <li><a href="../modules/moony.query.html#from_list">from_list</a></li>
+         <li><a href="../modules/moony.query.html#from_iterator">from_iterator</a></li>
+         <li><a href="../modules/moony.query.html#from_nil">from_nil</a></li>
+    </ul>
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> iterable = query({<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>})</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "from_list"></a>
+    <strong>from_list (list)</strong>
+    </dt>
+    <dd>
+    Creates <code>Iterable</code> from given list.
+ Ordering of the items is maintained.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">list</span>
+         list containing data
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        instance of <code>Iterable</code>
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "from_dictionary"></a>
+    <strong>from_dictionary (dictionary)</strong>
+    </dt>
+    <dd>
+    Creates <code>Iterable</code> from given dictionary.
+ All key/value pairs are converted to a list of <a href="../modules/moony.query.html#KeyValuePair">KeyValuePair</a> tables with arbitrary order.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">dictionary</span>
+         dictionary containing data
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        instance of <code>Iterable</code>
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "from_iterator"></a>
+    <strong>from_iterator (iterator)</strong>
+    </dt>
+    <dd>
+    Creates <code>Iterable</code> from given iterator.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">iterator</span>
+         iterator to be used as data source
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        instance of <code>Iterable</code>
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "from_nil"></a>
+    <strong>from_nil ()</strong>
+    </dt>
+    <dd>
+    Creates empty <code>Iterable</code>.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        instance of <code>Iterable</code>
+    </ol>
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Filters"></a>Filters </h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "Iterable:where"></a>
+    <strong>Iterable:where (predicate)</strong>
+    </dt>
+    <dd>
+    Filters <code>Iterable</code> based on a predicate.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">predicate</span>
+         A function to test each item
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        filtered <code>Iterable</code>
+    </ol>
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Transformations"></a>Transformations </h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "Iterable:select"></a>
+    <strong>Iterable:select (selector)</strong>
+    </dt>
+    <dd>
+    Transforms each item of <code>Iterable</code>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">selector</span>
+         A function to transform each item
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        transformed <code>Iterable</code>
+    </ol>
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Predicates"></a>Predicates </h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "Iterable:all"></a>
+    <strong>Iterable:all (predicate)</strong>
+    </dt>
+    <dd>
+    Checks whether all items of <code>Iterable</code> satisfy a predicate.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">predicate</span>
+         A function to test each item
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        <code>true</code> if all items of <code>Iterable</code> satisfy the predicate; <code>false</code> otherwise
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Iterable:any"></a>
+    <strong>Iterable:any (predicate)</strong>
+    </dt>
+    <dd>
+    Checks whether any item of <code>Iterable</code> satisfies a predicate.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">predicate</span>
+         A function to test each item
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        <code>true</code> if any item of <code>Iterable</code> satisfies the predicate; <code>false</code> otherwise
+    </ol>
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Evaluation"></a>Evaluation </h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "Iterable:to_list"></a>
+    <strong>Iterable:to_list ()</strong>
+    </dt>
+    <dd>
+    Creates a list from <code>Iterable</code>.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        list containing all items from <code>Iterable</code>
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Iterable:to_dictionary"></a>
+    <strong>Iterable:to_dictionary ()</strong>
+    </dt>
+    <dd>
+    Creates a dictionary from <code>Iterable</code>.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        dictionary created from all <a href="../modules/moony.query.html#KeyValuePair">KeyValuePair</a> items of <code>Iterable</code>
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Iterable:to_iterator"></a>
+    <strong>Iterable:to_iterator ()</strong>
+    </dt>
+    <dd>
+    Get the iterator of <code>Iterable</code>.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        iterator function
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Iterable:first_or_nil"></a>
+    <strong>Iterable:first_or_nil ()</strong>
+    </dt>
+    <dd>
+    Get the first item of <code>Iterable</code> or <code>nil</code> if no item is found.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        the first item of <code>Iterable</code> or <code>nil</code> if <code>Iterable</code> is empty
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Iterable:first"></a>
+    <strong>Iterable:first ()</strong>
+    </dt>
+    <dd>
+    Get the first item of <code>Iterable</code>.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        the first item of <code>Iterable</code>
+    </ol>
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Key_Value_Pair"></a>Key/Value Pair </h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "KeyValuePair"></a>
+    <strong>KeyValuePair</strong>
+    </dt>
+    <dd>
+    Table holding a key/value pair.
+
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">key</span>
+         key from the original dictionary
+        </li>
+        <li><span class="parameter">value</span>
+         value from the original dictionary
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.3</a></i>
+<i style="float:right;">Last updated 2016-06-24 12:18:28 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>
