@@ -115,6 +115,4 @@ function MT.__call(_, ...)
 	return new_class(...)
 end
 
-setmetatable(M, MT)
-
-return M
+return setmetatable(M, MT)
