@@ -107,6 +107,7 @@ local function new_class(super)
 	class.instance_of = instance_of
 	class.class_of = class_of
 	class.new = new_object
+	class.init = nil
 
 	return class
 end
